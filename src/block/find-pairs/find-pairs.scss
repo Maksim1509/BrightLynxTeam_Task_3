@@ -1,0 +1,78 @@
+.find-pairs {
+    border: 1px solid black;
+    max-width: 500px;
+    width: 95%;
+    padding-top: 5px;
+    margin: 0 auto;
+}
+.find-pairs__button {
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.find-pairs__timer {
+    width: 80px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width: 95%;
+    margin: 0 auto;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+.field {
+    box-sizing: border-box;
+    width: 24%;
+    height: 15vh;
+    margin: 1px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;;
+}
+
+.black {
+    background-color: black;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.green {
+    background-color: green;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.violet {
+    background-color: violet;
+}
+
+.aqua {
+    background-color: aqua;
+}
+
+.transparent {
+    background-color: transparent;
+}
