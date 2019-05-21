@@ -1,7 +1,7 @@
 const wrap = document.querySelector('.wrap');
 const field = document.querySelectorAll('.field');
 
-const numPool = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 const colors = ['red', 'blue', 'black', 'yellow', 'green', 'violet', 'aqua', 'orange'];
 
 const shuffle = (numPool) => {
@@ -9,7 +9,8 @@ const shuffle = (numPool) => {
   x = numPool[--i], numPool[i] = numPool[j], numPool[j] = x);
   return numPool;
 };
-const randomResult = shuffle(numPool);
+const randomResult = shuffle(arr);
+
 const startGame = () => {
   for (let i = 0; i < colors.length; i += 1) {
     field[randomResult[0]].classList.add(colors[i]);
@@ -18,32 +19,31 @@ const startGame = () => {
     randomResult.splice(0, 1);
   }
 };
-startGame();
 
 const game = () => {
-  let color;
   let step = 0;
   let firstColor;
   let secondColor;
+  let firstCell;
+  let secondCell;
 
   wrap.addEventListener('click', (event) => {
     step += 1;
     if (step % 2 === 0) {
-      secondColor = event.target;
-      secondColor.classList.remove('transparent');
-      if (color !== getComputedStyle(secondColor).backgroundColor) {
-        setTimeout(() => firstColor.classList.add('transparent'), 200);
-        setTimeout(() => secondColor.classList.add('transparent'), 200);
+      secondCell = event.target;
+      secondCell.classList.remove('transparent');
+      secondColor = getComputedStyle(secondCell).backgroundColor;
+      if (firstColor !== secondColor) {
+        setTimeout(() => firstCell.classList.add('transparent'), 500);
+        setTimeout(() => secondCell.classList.add('transparent'), 500);
       }
     } else {
-      firstColor = event.target;
-      firstColor.classList.remove('transparent');
-      color = getComputedStyle(firstColor).backgroundColor;
+      firstCell = event.target;
+      firstCell.classList.remove('transparent');
+      firstColor = getComputedStyle(firstCell).backgroundColor;
     }
   });
 };
-game();
-
 // timer
 let sec = 0;
 let min = 0;
@@ -60,11 +60,20 @@ const timer = () => {
   }
   const transp = document.querySelectorAll('.transparent');
   if (transp.length === 0) {
-    alert(`GAME OVER \n Ваш результат: 0${min} : ${sec}`)
+    alert(`GAME OVER \n Ваш результат: 0${min} : ${sec - 2}`)
+    document.querySelector('.find-pairs__timer').innerHTML = '00 : 00';
+    sec = 0;
+    min = 0;
     return;
   }
   setTimeout(timer, 1000);
 };
 
 const startBtn = document.querySelector('.find-pairs__button');
-startBtn.addEventListener('click', timer);
+startBtn.addEventListener('click', () => {
+  Array.from(field).map(elem => elem.classList.add('transparent'));
+  
+  timer();
+  startGame();
+  game();
+});
