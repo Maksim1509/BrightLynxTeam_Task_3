@@ -1,5 +1,3 @@
-import { timeout } from "q";
-
 const wrap = document.querySelector('.wrap');
 const field = document.querySelectorAll('.field');
 
@@ -42,7 +40,6 @@ const game = () => {
       firstColor.classList.remove('transparent');
       color = getComputedStyle(firstColor).backgroundColor;
     }
-    return timeout;
   });
 };
 game();
