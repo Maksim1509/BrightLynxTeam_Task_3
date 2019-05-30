@@ -72,7 +72,6 @@ const timer = () => {
 const startBtn = document.querySelector('.find-pairs__button');
 startBtn.addEventListener('click', () => {
   Array.from(field).map(elem => elem.classList.add('transparent'));
-  
   timer();
   startGame();
   game();
